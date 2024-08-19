@@ -21,12 +21,13 @@ public class PersonServices {
 	
 	@Autowired
 	PersonRepository repository;
-
+	
+	
 	
 	public List<PersonVO> findAll() {		
 		logger.info("Finding all people!");
 		
-		return DozerMapper.parseListObjects(findAll(), PersonVO.class);
+		return DozerMapper.parseListObjects(repository.findAll(), PersonVO.class);
 	}
 	
 	public PersonVO findById(long id) {
