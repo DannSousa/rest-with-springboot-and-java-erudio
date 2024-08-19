@@ -1,4 +1,4 @@
-package com.example;
+package com.example.controllers;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.exceptions.UnsupportedMathOperation;
+import com.example.Validations;
+import com.example.exceptions.ResourceNotFoundException;
 
 @RestController
 public class MathController {
@@ -20,7 +21,7 @@ public class MathController {
 			          @PathVariable(value = "numberTwo") String numberTwo)
 			          throws Exception {
 		if(!validate.isNumeric(numberOne) || !validate.isNumeric(numberTwo)) { 
-			throw new UnsupportedMathOperation("Please set a numeric value");
+			throw new ResourceNotFoundException("Please set a numeric value");
 		}
 			return validate.convertToDouble(numberOne) + validate.convertToDouble(numberTwo);
 	}	
@@ -29,7 +30,7 @@ public class MathController {
 					          @PathVariable(value = "numberTwo") String numberTwo)
 					          throws Exception {
 				if(!validate.isNumeric(numberOne) || !validate.isNumeric(numberTwo)) { 
-					throw new UnsupportedMathOperation("Please set a numeric value");
+					throw new ResourceNotFoundException("Please set a numeric value");
 				}
 					return validate.convertToDouble(numberOne) - validate.convertToDouble(numberTwo);
 			}
@@ -38,7 +39,7 @@ public class MathController {
 					          @PathVariable(value = "numberTwo") String numberTwo)
 					          throws Exception {
 				if(!validate.isNumeric(numberOne) || !validate.isNumeric(numberTwo)) { 
-					throw new UnsupportedMathOperation("Please set a numeric value");
+					throw new ResourceNotFoundException("Please set a numeric value");
 				}
 					return validate.convertToDouble(numberOne) * validate.convertToDouble(numberTwo);
 			}
@@ -47,7 +48,7 @@ public class MathController {
 					          @PathVariable(value = "numberTwo") String numberTwo)
 					          throws Exception {
 				if(!validate.isNumeric(numberOne) || !validate.isNumeric(numberTwo)) { 
-					throw new UnsupportedMathOperation("Please set a numeric value");
+					throw new ResourceNotFoundException("Please set a numeric value");
 				}
 					return validate.convertToDouble(numberOne) /  validate.convertToDouble(numberTwo);
 			}
@@ -56,7 +57,7 @@ public class MathController {
 					          @PathVariable(value = "numberTwo") String numberTwo)
 					          throws Exception {
 				if(!validate.isNumeric(numberOne) || !validate.isNumeric(numberTwo)) { 
-					throw new UnsupportedMathOperation("Please set a numeric value");
+					throw new ResourceNotFoundException("Please set a numeric value");
 				}
 					return (validate.convertToDouble(numberOne) + validate.convertToDouble(numberTwo)) / 2;
 			}
@@ -64,7 +65,7 @@ public class MathController {
 			public Double sqrtoot(@PathVariable(value = "numberOne") String numberOne)
 					          throws Exception {
 				if(!validate.isNumeric(numberOne)) { 
-					throw new UnsupportedMathOperation("Please set a numeric value");
+					throw new ResourceNotFoundException("Please set a numeric value");
 				}
 					return Math.sqrt(validate.convertToDouble(numberOne));
 			}
